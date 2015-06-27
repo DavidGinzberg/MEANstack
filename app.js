@@ -1,5 +1,6 @@
 var app = angular.module('flapperNews', ['ui.router']);
 
+
 app.factory('posts', [function(){
   var o = {
     posts: []
@@ -29,3 +30,19 @@ function($scope, posts){
     post.upvotes += 1;
   };
 }]);
+
+app.config([
+'$stateProvider',
+'$urlRouterProvider',
+function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('home', {
+      url: '/home',
+      templateURL: '/home.html',
+      controller: 'MainCtrl'
+  });
+  
+  $urlRouterProvider.otherwise('home');
+}]);
+
